@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Projector lobby — 1 vs 100</title>
+    <link rel="stylesheet" href="/static/styles.css">
+  </head>
+  <body class="projector-surface">
+    <main class="projector">
+      <header class="projector-brandbar">
+        <span class="fieldhouse-brand">1 <i>vs</i> 100</span>
+        <span>Today’s show</span>
+      </header>
+      <section id="projector-lobby" class="projector-lobby" aria-labelledby="projector-title">
+        <div class="join-callout">
+          <p class="surface-label">Join the show</p>
+          <h1 id="projector-title">Join the Challenge Team</h1>
+          <p class="projector-instruction">Go to this page and enter the show code</p>
+          <p id="join-address" class="join-address">/join</p>
+        </div>
+        <div class="code-panel">
+          <span>Show code</span>
+          <p id="show-code" class="show-code" aria-label="Show code">------</p>
+          <p id="player-count" role="status" aria-live="polite">Waiting for players…</p>
+        </div>
+        <ul id="roster" class="roster" aria-label="Player roster"></ul>
+      </section>
+      <section id="projector-live" class="live-card projector-live" hidden aria-labelledby="projector-phase">
+        <div class="live-heading">
+          <div>
+            <p class="surface-label">Live question</p>
+            <p id="projector-phase" class="eyebrow">Everybody Answers</p>
+          </div>
+          <strong id="projector-countdown" class="countdown">--</strong>
+        </div>
+        <h2 id="projector-question">Question incoming</h2>
+        <p id="lock-count" class="lock-count">0 answers in</p>
+        <div id="projector-choices" class="answer-grid"></div>
+        <div id="projector-reveal" class="result" hidden aria-live="polite"></div>
+      </section>
+      <section id="standings" class="standings" hidden>
+        <p class="eyebrow">Today’s show</p>
+        <h2>Today’s leaderboard</h2>
+        <ol id="standings-rows" aria-live="polite"></ol>
+      </section>
+      <section id="show-stage" class="show-stage" hidden aria-labelledby="show-headline">
+        <div class="show-scoreboard" aria-label="Live game board">
+          <span><small>Game</small><strong id="show-game">--</strong></span>
+          <span class="show-one"><small>Spotlight Player</small><strong id="show-one">Getting ready</strong></span>
+          <span><small>Challenge Team</small><strong id="show-mob-count">--</strong></span>
+          <span><small>Prize Pot</small><strong id="show-bank">0</strong></span>
+          <span><small>Chances</small><strong id="show-strikes">--</strong></span>
+          <span id="show-roll" hidden><small>On a Roll</small><strong id="show-roll-value">Building</strong></span>
+        </div>
+        <div class="show-content">
+          <p id="show-phase" class="surface-label">Today’s show</p>
+          <h2 id="show-headline">The show is getting ready</h2>
+          <p id="show-detail" class="show-detail"></p>
+          <div id="show-progress" class="show-progress" hidden>
+            <strong id="show-progress-count">0 / 0</strong>
+            <span>Answers in</span>
+            <div class="progress-track" aria-hidden="true"><span id="show-progress-fill"></span></div>
+          </div>
+          <div id="show-question-panel" class="show-question-panel" hidden>
+            <h2 id="show-question"></h2>
+            <div id="show-choices" class="answer-grid"></div>
+          </div>
+          <div id="show-helps" class="show-helps" hidden aria-label="Lifeline status"></div>
+          <div id="show-help-result" class="show-help-result" hidden aria-live="polite"></div>
+          <div id="show-deltas" class="show-deltas" hidden></div>
+          <ol id="show-leaderboard" class="show-leaderboard" hidden aria-label="Today’s leaderboard"></ol>
+        </div>
+        <div id="show-pause" class="show-pause" hidden role="status" aria-live="assertive">
+          <strong>Show paused</strong>
+          <span>Waiting for the Spotlight Player to reconnect</span>
+        </div>
+      </section>
+    </main>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/static/vendor/canvas-confetti.js"></script>
+    <script type="module" src="/static/projector.js"></script>
+  </body>
+</html>

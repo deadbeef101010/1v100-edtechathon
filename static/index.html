@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>1 vs 100 — Classroom Edition</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <style>
+      .landing-surface {
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--fh-color-navy-deep);
+        color: var(--fh-color-stage-copy);
+        font-family: var(--fh-font-sans);
+      }
+      .landing-card {
+        width: min(34rem, calc(100vw - 2 * var(--fh-space-5)));
+        padding: var(--fh-space-7) var(--fh-space-6);
+        background: var(--fh-color-navy);
+        border: var(--fh-border-strong) solid var(--fh-color-stage-border);
+        border-radius: var(--fh-radius-lg);
+        box-shadow: var(--fh-shadow-stage);
+        text-align: center;
+      }
+      .landing-brand {
+        font-family: var(--fh-font-display);
+        font-weight: var(--fh-weight-black);
+        font-size: clamp(2.5rem, 8vw, 4rem);
+        line-height: 1.05;
+        color: var(--fh-color-white);
+        margin: 0 0 var(--fh-space-2);
+      }
+      .landing-brand i {
+        font-style: italic;
+        color: var(--fh-color-gold);
+      }
+      .landing-tag {
+        margin: 0 0 var(--fh-space-6);
+        color: var(--fh-color-stage-copy-soft);
+        font-weight: var(--fh-weight-medium);
+      }
+      .landing-actions {
+        display: grid;
+        gap: var(--fh-space-4);
+      }
+      .landing-btn {
+        display: block;
+        padding: var(--fh-space-5) var(--fh-space-5);
+        border-radius: var(--fh-radius-md);
+        text-decoration: none;
+        font-family: var(--fh-font-display);
+        font-weight: var(--fh-weight-bold);
+        font-size: 1.35rem;
+        transition: transform var(--fh-motion-press) ease;
+      }
+      .landing-btn:active { transform: scale(0.98); }
+      .landing-btn-primary {
+        background: var(--fh-color-orange);
+        color: var(--fh-color-ink);
+        box-shadow: var(--fh-shadow-offset);
+        font-size: clamp(1.8rem, 5vw, 2.4rem);
+        padding: var(--fh-space-6) var(--fh-space-5);
+      }
+      .landing-btn-primary small {
+        font-size: 1rem;
+      }
+      .landing-btn-secondary {
+        background: transparent;
+        color: var(--fh-color-stage-muted);
+        border: none;
+        font-size: 0.9rem;
+        padding: var(--fh-space-2);
+        margin-top: var(--fh-space-3);
+        text-decoration: underline;
+        font-family: var(--fh-font-sans);
+        font-weight: var(--fh-weight-medium);
+      }
+      .landing-btn-secondary small {
+        display: inline;
+        margin-left: 0.4rem;
+      }
+      .landing-btn small {
+        display: block;
+        font-family: var(--fh-font-sans);
+        font-weight: var(--fh-weight-medium);
+        font-size: 0.85rem;
+        margin-top: var(--fh-space-1);
+        opacity: 0.85;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .landing-btn { transition: none; }
+        .landing-btn:active { transform: none; }
+      }
+    </style>
+  </head>
+  <body class="landing-surface">
+    <main class="landing-card">
+      <h1 class="landing-brand">1 <i>vs</i> 100</h1>
+      <p class="landing-tag">Classroom edition — one brave player takes on the whole class.</p>
+      <nav class="landing-actions" aria-label="Choose your door">
+        <a class="landing-btn landing-btn-primary" href="/join">
+          I&rsquo;m playing today
+          <small>Join with the code on the big screen</small>
+        </a>
+        <a class="landing-btn landing-btn-secondary" href="/teach">
+          I&rsquo;m the teacher
+          <small>Sign in to run the show</small>
+        </a>
+      </nav>
+    </main>
+  </body>
+</html>

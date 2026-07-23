@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Teacher console — 1 vs 100</title>
+    <link rel="stylesheet" href="/static/styles.css">
+  </head>
+  <body>
+    <main>
+      <p class="eyebrow">Teacher console</p>
+      <h1>Start today’s show</h1>
+      <section id="teacher-login" class="card" aria-labelledby="login-title">
+        <h2 id="login-title">Teacher sign-in</h2>
+        <form id="teacher-login-form">
+          <label for="teacher-key">Teacher key
+            <input id="teacher-key" name="teacher-key" type="password" autocomplete="off" required>
+          </label>
+          <button type="submit">Sign in</button>
+        </form>
+      </section>
+      <div id="teacher-console" hidden>
+        <button id="teacher-sign-out" class="quiet-button" type="button">Sign out</button>
+        <p id="teacher-status" role="status" aria-live="polite">Loading your sessions.</p>
+        <section id="session-home" class="card teacher-home" aria-labelledby="sessions-title">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Your classroom</p>
+              <h2 id="sessions-title">Teacher sessions</h2>
+            </div>
+            <div class="session-list-tools">
+              <label for="show-archived">
+                <input id="show-archived" type="checkbox">
+                Show archived
+              </label>
+              <button id="new-session" type="button"><span aria-hidden="true">+</span> New session</button>
+            </div>
+          </div>
+          <p id="session-list-empty" hidden>No sessions yet. Start one when your class is ready.</p>
+          <div class="table-scroll">
+            <table id="session-list">
+              <thead><tr><th>Code</th><th>Created</th><th>Status</th><th>Players</th><th>Actions</th></tr></thead>
+              <tbody id="session-rows"></tbody>
+            </table>
+          </div>
+        </section>
+        <section id="new-session-panel" class="card" hidden aria-labelledby="session-title">
+          <button id="back-to-sessions" class="quiet-button" type="button">Back to sessions</button>
+          <h2 id="session-title">Choose today's questions</h2>
+          <form id="question-set-filters" class="filter-grid">
+            <label for="question-subject">Subject
+              <input id="question-subject" name="subject" placeholder="All subjects">
+            </label>
+            <label for="question-grade">Grade
+              <input id="question-grade" name="grade" placeholder="All grades">
+            </label>
+            <button type="submit">Filter sets</button>
+          </form>
+          <fieldset id="question-set-picker" class="set-picker" disabled>
+            <legend>Question set</legend>
+            <p id="question-set-empty">Loading your question sets.</p>
+            <div id="question-set-list"></div>
+          </fieldset>
+          <button id="create-session" type="button" disabled>Create session</button>
+          <div class="upload-panel">
+            <h3>Upload questions</h3>
+            <p>CSV columns: set title, subject, grade, question, choices, correct, explanation, and optional position. Maximum 256 KiB.</p>
+            <form id="question-upload-form">
+              <label for="question-upload">Question CSV
+                <input id="question-upload" type="file" accept=".csv,text/csv" required>
+              </label>
+              <button type="submit">Upload question set</button>
+            </form>
+            <ul id="question-upload-errors" class="error-list" aria-live="polite"></ul>
+          </div>
+        </section>
+        <div id="teacher-cockpit" class="cockpit">
+        <div id="session-details" class="card" hidden>
+          <button id="back-to-session-list" class="quiet-button" type="button">&#9664; All sessions</button>
+          <p>Share this show code:</p>
+          <p id="teacher-show-code" class="show-code"></p>
+          <button id="rotate-session-code" class="quiet-button" type="button">Rotate code</button>
+          <a id="projector-link" class="button-link" hidden>Open projector lobby</a>
+        </div>
+        <section id="teacher-controls" class="live-card" hidden aria-labelledby="teacher-phase">
+          <div class="live-heading">
+            <div>
+              <p class="eyebrow">Live control strip</p>
+              <h2 id="teacher-phase">Lobby</h2>
+            </div>
+            <strong id="teacher-countdown" class="countdown">--</strong>
+          </div>
+          <p id="teacher-question">Waiting for a question.</p>
+          <p id="teacher-lock-count">0 answers in</p>
+          <div class="teacher-deck-strip">
+            <label class="teacher-timer-setting" for="teacher-timer-seconds">
+              <strong>Timer: <span id="teacher-timer-value">20s</span></strong>
+              <input id="teacher-timer-seconds" type="number" min="10" max="60" step="1" value="20" aria-describedby="teacher-timer-note">
+              <small id="teacher-timer-note">Applies from the next question</small>
+            </label>
+            <p class="teacher-next-question"><strong>Next up:</strong> <span id="teacher-next-prompt">Loading deck...</span></p>
+            <button id="teacher-show-deck" class="quiet-button" type="button" disabled>Show Q/A list</button>
+          </div>
+          <div class="control-strip">
+            <button id="teacher-open-question" type="button">Open question</button>
+            <button id="teacher-pause" type="button">Pause</button>
+            <button id="teacher-resume" type="button" disabled>Resume</button>
+            <button id="teacher-force-reveal" type="button">Force reveal</button>
+            <button id="teacher-advance" type="button" disabled>Advance</button>
+            <button id="teacher-end-session" class="danger" type="button">End session</button>
+          </div>
+          <div id="teacher-roster-panel" class="teacher-roster-panel">
+            <div class="roster-heading">
+              <strong>Class roster</strong>
+              <span id="teacher-one-status">Pick a Spotlight Player to start 1 vs 100.</span>
+            </div>
+            <ul id="teacher-roster" class="teacher-roster"></ul>
+          </div>
+        </section>
+          <section id="mini-projector-slot" class="cockpit-stage" hidden aria-label="Projector preview"></section>
+        </div>
+      </div>
+    </main>
+    <dialog id="teacher-deck-dialog" class="teacher-deck-dialog" aria-labelledby="teacher-deck-title">
+      <div class="teacher-deck-heading">
+        <div>
+          <p class="eyebrow">Teacher answer key</p>
+          <h2 id="teacher-deck-title">Question deck</h2>
+        </div>
+        <button id="teacher-close-deck" class="quiet-button" type="button" aria-label="Close question deck">Close</button>
+      </div>
+      <ol id="teacher-deck-list" class="teacher-deck-list"></ol>
+    </dialog>
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="module" src="/static/teacher.js"></script>
+  </body>
+</html>

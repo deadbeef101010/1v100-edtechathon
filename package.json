@@ -1,0 +1,52 @@
+{
+  "name": "1v100-classroom",
+  "version": "0.1.0",
+  "description": "A self-hosted classroom review game where one student takes on the rest of the class.",
+  "private": true,
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deadbeef101010/1v100-edtechathon.git"
+  },
+  "bugs": {
+    "url": "https://github.com/deadbeef101010/1v100-edtechathon/issues"
+  },
+  "homepage": "https://github.com/deadbeef101010/1v100-edtechathon#readme",
+  "keywords": [
+    "classroom",
+    "education",
+    "game",
+    "review"
+  ],
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "node --watch --import tsx src/server.ts",
+    "test": "vitest run",
+    "build": "tsc && rm -rf dist/migrations dist/static && mkdir -p dist/migrations && cp migrations/*.sql dist/migrations/ && cp -r static dist/static",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "mint-teacher-key": "tsx tools/mint-teacher-key.ts",
+    "import-questions": "tsx tools/import-questions.ts",
+    "gen-questions": "tsx tools/gen-questions.ts",
+    "bots": "tsx tools/bots.ts"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.32.0",
+    "@types/better-sqlite3": "7.6.13",
+    "@types/node": "^24.1.0",
+    "eslint": "^9.32.0",
+    "globals": "14.0.0",
+    "tsx": "^4.20.3",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.38.0",
+    "vitest": "^3.2.4"
+  },
+  "dependencies": {
+    "better-sqlite3": "13.0.1",
+    "socket.io": "4.8.3",
+    "socket.io-client": "4.8.3"
+  }
+}

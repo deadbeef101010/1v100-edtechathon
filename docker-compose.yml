@@ -1,0 +1,30 @@
+services:
+  app:
+    build: .
+    image: ${IMAGE:-ghcr.io/deadbeef101010/1v100-edtechathon:latest}
+    restart: unless-stopped
+    init: true
+    ports:
+      - "${APP_PORT:-8000}:8000"
+    environment:
+      NODE_ENV: production
+      HOST: 0.0.0.0
+      PORT: "8000"
+      DATABASE_PATH: /data/game.db
+      PLAYER_TOKEN_SECRET: ${PLAYER_TOKEN_SECRET:?set PLAYER_TOKEN_SECRET to a base64url-encoded 32-byte secret}
+      META_KEY_SHA256: ${META_KEY_SHA256:?set META_KEY_SHA256 to the SHA-256 digest of a separate administrator key}
+      BASE_URL: ${BASE_URL:-}
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      BUILD_SHA: ${BUILD_SHA:-development}
+    volumes:
+      - game-db:/data
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m,mode=1777
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+
+volumes:
+  game-db:

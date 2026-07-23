@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Organizer access</title>
+    <link rel="stylesheet" href="/static/styles.css">
+  </head>
+  <body>
+    <main>
+      <p class="eyebrow">Organizer access</p>
+      <h1>Teacher keys</h1>
+      <section id="meta-login" class="card" aria-labelledby="meta-login-title">
+        <h2 id="meta-login-title">Enter organizer key</h2>
+        <form id="meta-login-form">
+          <label for="meta-key">Organizer key
+            <input id="meta-key" type="password" autocomplete="off" required>
+          </label>
+          <button type="submit">Continue</button>
+        </form>
+        <p id="meta-login-status" role="status" aria-live="polite"></p>
+      </section>
+      <div id="meta-console" hidden>
+        <section class="card" aria-labelledby="mint-title">
+          <h2 id="mint-title">Mint a teacher key</h2>
+          <form id="mint-form">
+            <label for="teacher-label">Teacher label
+              <input id="teacher-label" maxlength="64" required placeholder="Ms Rivera">
+            </label>
+            <button type="submit">Mint key</button>
+          </form>
+          <div id="minted-key" class="key-reveal" hidden>
+            <strong>Copy this key now. It will not be shown again.</strong>
+            <code id="minted-key-value"></code>
+            <button id="copy-key" type="button">Copy key</button>
+          </div>
+          <p id="meta-status" role="status" aria-live="polite"></p>
+        </section>
+        <section class="card" aria-labelledby="teacher-keys-title">
+          <h2 id="teacher-keys-title">Issued teacher keys</h2>
+          <div class="table-scroll">
+            <table>
+              <thead><tr><th>Label</th><th>Created</th><th>Last used</th><th>Sessions</th><th>Status</th><th></th></tr></thead>
+              <tbody id="teacher-rows"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </main>
+    <script type="module" src="/static/meta.js"></script>
+  </body>
+</html>

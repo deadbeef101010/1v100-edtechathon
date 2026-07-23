@@ -1,0 +1,24 @@
+name: Feature request
+description: Suggest a focused classroom or deployment improvement.
+title: "[Feature]: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Teacher or student problem
+      description: Describe the need without identifying a real student.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed outcome
+    validations:
+      required: true
+  - type: textarea
+    id: accessibility
+    attributes:
+      label: Accessibility and privacy considerations
+    validations:
+      required: true

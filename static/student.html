@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Join today’s show — 1 vs 100</title>
+    <link rel="stylesheet" href="/static/styles.css">
+  </head>
+  <body class="student-surface">
+    <main class="student-app">
+      <header class="student-brandbar">
+        <a class="fieldhouse-brand" href="/join" aria-label="1 vs 100 home">1 <i>vs</i> 100</a>
+        <span id="student-connection" class="connection-badge"><span aria-hidden="true"></span> Live classroom game</span>
+      </header>
+      <section id="join-view" class="student-join" aria-labelledby="join-title">
+        <p class="surface-label">Today’s show</p>
+        <h1 id="join-title">Join the show</h1>
+        <p class="student-lead">Grab the code from the big screen, then pick the name your class knows.</p>
+        <div class="card join-card" aria-label="Join form">
+        <form id="join-form">
+          <label for="show-code">Show code
+            <input id="show-code" name="show-code" inputmode="text" maxlength="8" autocomplete="off" placeholder="ABC123" required>
+          </label>
+          <label for="nickname">Nickname
+            <input id="nickname" name="nickname" maxlength="24" autocomplete="nickname" placeholder="Your first name" required>
+          </label>
+          <button type="submit">Join the show</button>
+        </form>
+        <div id="student-identity" class="student-identity" hidden aria-hidden="true"></div>
+        <p id="join-status" class="join-status" role="status" aria-live="polite">No account needed. We’ll reconnect you on this device.</p>
+        <button id="leave-game" class="leave-game" type="button" hidden>Leave this game</button>
+        </div>
+      </section>
+      <section id="student-game" class="live-card" hidden aria-labelledby="student-phase">
+        <div class="live-heading">
+          <div>
+            <p class="surface-label">1 vs 100</p>
+            <p id="student-phase" class="eyebrow">Everybody Answers</p>
+          </div>
+          <strong id="student-countdown" class="countdown" aria-live="polite">--</strong>
+        </div>
+        <div id="student-show-board" class="student-show-board" hidden>
+          <span id="student-role" class="role-badge">Challenge Team</span>
+          <span id="student-points" class="show-stat"><strong>0</strong> Today’s total</span>
+          <span id="student-streak" class="show-stat"><strong>0</strong> Streak</span>
+          <span id="student-bank" class="show-stat"><strong>0</strong> Prize Pot</span>
+          <span id="student-strikes" class="show-stat"><strong>--</strong> Chances</span>
+        </div>
+        <div id="student-progress" class="student-progress" hidden>
+          <strong id="student-progress-count">0 / 0</strong>
+          <span id="student-progress-copy">Classmates answered</span>
+          <div class="progress-track" aria-hidden="true"><span id="student-progress-fill"></span></div>
+        </div>
+        <h2 id="student-question">Waiting for the next question</h2>
+        <div id="answer-choices" class="answer-grid" aria-label="Answer choices"></div>
+        <button id="student-final-answer" class="final-answer" type="button" hidden disabled>Make this my final answer</button>
+        <div id="student-helps" class="student-helps" hidden aria-label="Lifelines">
+          <button id="help-poll" type="button"><strong>Poll the Class</strong><span>See how the class answered</span></button>
+          <button id="help-ask" type="button"><strong>Ask Two</strong><span>Hear two classmates explain</span></button>
+          <button id="help-trust" type="button"><strong>Go with the Class</strong><span>Use the class’s top answer</span></button>
+        </div>
+        <div id="student-help-result" class="help-result" hidden aria-live="polite"></div>
+        <p id="answer-status" role="status" aria-live="polite">Choose your answer.</p>
+        <div id="student-result" class="result" hidden></div>
+        <ol id="student-standings" class="compact-standings" aria-label="Today’s standings"></ol>
+        <div id="student-toast" class="student-toast" hidden role="status" aria-live="polite"></div>
+        <div id="student-pause" class="student-pause" hidden role="status" aria-live="assertive">
+          <strong>Show paused</strong>
+          <span>We’ll keep your place while the Spotlight Player reconnects.</span>
+        </div>
+      </section>
+    </main>
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="module" src="/static/student.js"></script>
+  </body>
+</html>

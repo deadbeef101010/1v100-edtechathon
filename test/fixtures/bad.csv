@@ -1,0 +1,5 @@
+set title,subject,grade,position,question,choices,correct,explanation
+Broken Fractions,Fractions,5,1,Which is one half?,"[""1/2"",""1/3"",""1/4""]",0,Valid row for partial mode.
+Broken Fractions,Fractions,5,1,Which is one third?,"[""1/2"",""1/3"",""1/4""]",1,Duplicate position.
+Broken Fractions,Fractions,5,3,Which is two thirds?,"[""2/3"",""1/3"",""1/4""]",3,Correct index is out of range.
+Broken Fractions,Fractions,5,4,Which is one fourth?,"[""1/4"","""",""3/4""]",0,An empty choice is invalid.
